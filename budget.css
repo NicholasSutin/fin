@@ -1,0 +1,104 @@
+body, html, #chart{
+    background-color:#1a1a1a !important;
+}
+body{
+    padding:0px;
+    margin:0;
+    color:#e2e2e2;
+}
+@font-face {
+    font-family: 'Martina';
+    src: url('fonts/Martina.woff2') format('WOFF2');
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter.ttf') format('TrueType');
+}
+h1, h2{
+    font-family:'Martina';
+    font-size:3rem;
+    font-weight:400;
+}
+h2{
+    font-size:2rem;
+    border-bottom:2px solid gray;
+}
+p{
+    font-family:'Inter';
+}
+a{
+    color:#8db8db;
+}
+.menu{
+    position:fixed;
+    left:320px;
+    top:20px;
+    border:2px solid #1a1a1a;
+    transition:border 0.2s;
+    border-radius:10px;
+    box-sizing:border-box;
+    width:46px; height:46px;
+}
+.menu svg{
+    background-color: #2a2a2a;
+    padding:5px;
+    border-radius:10px;
+}
+.menu:hover{
+    border:2px solid gray;
+}
+aside{
+    position:fixed;
+    width:300px;
+    height:100vh;
+    left:0;
+    top:0;
+    background-color:#171717;
+    border-right:0.5px solid #afafaf;
+}
+aside input{
+    background-color:#303030;
+    border:1px solid #424242;
+    border-radius:5px;
+    color:#afafaf;
+    padding:5px;
+    margin-left:50px;
+    display:block;
+    font-family:'Inter', Arial;
+}
+aside h1{
+    font-size:16px;
+    font-family:'Inter', Arial;
+    padding:20px;
+    margin:0px;
+}
+aside button{
+    height:50px;
+    width:calc(50% - 25px);
+    float:left;
+    background-color:#303030 !important;
+    border:1px solid #424242;
+    border-radius:5px;
+    color:#afafaf;
+    cursor:pointer;
+}
+#btnholder{
+    position:absolute;
+    top:calc(100vh - 125px); 
+    margin-left:50px;
+    width:200px;
+}
+#chart{
+    display:block;
+    margin-left:350px;
+    margin-top:0px;
+    padding:50px;
+}
+#chart text{
+    fill:white;
+    font-family:'Inter';
+    font-size:11px;
+}
+#chart path{
+    filter:hue-rotate(190deg) !important;
+} 

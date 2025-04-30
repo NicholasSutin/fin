@@ -1,0 +1,173 @@
+body, html{
+    background-color:#141f24;
+    margin:0;
+    padding:0;
+    color:#f1f7fb;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+:root {
+    --bg:#141f24;
+    --ct:#38464f;
+    --tx:#f1f7fb;
+}
+@font-face {
+    font-family: 'Martina';
+    src: url('fonts/Martina.woff2') format('WOFF2');
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter.ttf') format('TrueType');
+}
+  /*----------------------------------------------bentogrid------------------------------------------------*/
+  #bentogrid-background{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background-color:gray;
+  }
+  #bentogrid-background .bentogrid div{
+    background-color:#1a1a1a;
+  }
+  .bentogrid div:not(#bentogrid-background div, #bentogrid-background, #bentogrid-background div div){
+    z-index:2;
+  }
+  .bentogrid{
+    display:grid;
+    height:calc((100vh / 3) - 1px);
+    border-top:1px solid gray;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap:1px;
+  }
+  .bentogrid div{
+    display:flex;
+    overflow:hidden;
+  }
+  .bentogrid div:not(#banner){
+    align-items: center;    
+  }
+  #banner{
+    display:grid;
+    grid-template-columns: 100%;
+    font-family:'Martina';
+  }
+  #banner p{
+    font-family:'Inter';
+  }
+  .bentogrid button{
+    border:none;
+    cursor:pointer;
+    color:white;
+    background:transparent;
+    width:100%;
+    height:100%;
+    font-family:system-ui, helvetica, Arial, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell;
+    font-size:1.5rem;
+    font-weight:200;
+  }
+.span-2{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+}
+/*------------------------------------------------------------------------------*/
+
+/*=============================================================================*/
+#bentogrid-background div canvas{
+    width:100%;
+    height:100%;
+    display:block;
+    background-color:black;
+    opacity:0.8;
+}
+#firstTile.opacity-in {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  
+#firstTile.opacity-out {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+#secondTile.opacity-in {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  
+#secondTile.opacity-out {
+    opacity: 0.5;
+    transition: opacity 0.5s;
+}
+#thirdTile.opacity-in {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  
+#thirdTile.opacity-out {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+#fourthTile.opacity-in {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  
+#fourthTile.opacity-out {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+#fourthTile{
+    background-image:url(images/fourthTile.webp);
+    width:100%;
+    height:100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#sixthTile{
+    background-image:url(images/sixthTile.webp);
+    width:100%;
+    height:100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#sixthTile.opacity-in {
+    opacity: 0.9;
+    transition: opacity 0.5s;
+  }
+  
+#sixthTile.opacity-out {
+    opacity: 0.6;
+    transition: opacity 0.5s;
+}
+#seventhTile.opacity-in {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+#seventhTile.opacity-out {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+#eighthTile.opacity-in {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+#eighthTile.opacity-out {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+#ninthTile.opacity-in {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+#ninthTile.opacity-out {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}

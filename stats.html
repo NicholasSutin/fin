@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fin</title>
+  <link rel="stylesheet" href="stats.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "d3": "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <div id="container">
+        <div id="pie-stats">
+            <div id="stat-1">
+                <h1>39% of americans say their financial situation is "fair."</h1>
+                <a href="https://news.gallup.com/poll/506012/americans-remain-discouraged-personal-finances.aspx" target="_blank">Inc, Gallup. “Americans Remain Discouraged about Personal Finances.” Gallup.com, 18 May 2023.</a>
+            </div>
+            <div id="stat-2">
+                <h1>12% of americans said their financial situation is "excellent" in 2021</h1>
+                <a href="https://news.gallup.com/poll/506012/americans-remain-discouraged-personal-finances.aspx" target="_blank">Inc, Gallup. “Americans Remain Discouraged about Personal Finances.” Gallup.com, 18 May 2023.</a>
+            </div>
+            <div id="stat-3">
+                <h1>Only 8% of Americans say their financial situation is "excellent" in 2023, continuing to decrease.</h1>
+                <a  href="https://news.gallup.com/poll/506012/americans-remain-discouraged-personal-finances.aspx" target="_blank">Inc, Gallup. “Americans Remain Discouraged about Personal Finances.” Gallup.com, 18 May 2023.</a>
+            </div>
+        </div>
+        <div id="donut-chart"></div>
+    </div>
+
+    <div class="second">
+
+        <div id="piggy-title">
+            <h1>The average person loses $1,819 annually due to lacking personal finance knowledge.</h1>
+
+            <div id="piggy-links">
+                <a href="https://www.ifac.org/knowledge-gateway/discussion/cost-financial-illiteracy" target="_blank">Lach, Linda, and Darlene Nzorubara. “The Cost of Financial Illiteracy | IFAC.” Www.ifac.org, International Federation of Accountants, 17 Apr. 2023</a> 
+                <span>and</span>
+                <a href="https://www.financialeducatorscouncil.org/wp-content/uploads/Cost-of-financial-illiteracy.pdf" target="_blank">Cost of Financial Illiteracy (NFEC)</a>
+            </div>
+        </div>
+
+        <div id="coinHolder" style="z-index:-1;">
+                
+            <svg id="mySvg" width="100%" height="100%" style="position:absolute;top:0;left:0; z-index:-1;">
+                <!-- Paths and circles will be added by JS -->
+            </svg>
+        </div>
+
+
+        <img style="    
+        display:block;
+        position:absolute;
+        width:40%;
+        left:30%;
+        top:30vh;
+        z-index:5;"
+        src="images/piggybank.webp">
+        <img style="    
+        display:block;
+        position:absolute;
+        width:40%;
+        top:30vh;
+        margin-left:30%;
+        z-index:-2;"
+        src="images/piggybanktop.webp">
+
+   
+
+        <svg id="piggy-tear" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M11.997 21q-2.999 0-4.998-2.062Q5 16.875 5 13.803q0-1.36.62-2.74q.619-1.38 1.547-2.648q.93-1.269 2.006-2.392q1.077-1.124 2-1.956q.18-.161.393-.249q.212-.087.434-.087t.434.087t.393.25q.923.83 2 1.955q1.077 1.123 2.006 2.391t1.548 2.649t.619 2.74q0 3.072-2.002 5.135Q14.994 21 11.996 21m.22-2.308q.224-.025.35-.153q.125-.13.125-.311q0-.212-.143-.329q-.144-.116-.368-.091q-1.025.075-2.29-.64q-1.266-.714-1.566-2.39q-.05-.236-.166-.353q-.117-.117-.295-.117q-.197 0-.335.147t-.083.44q.387 2.082 1.923 2.98t2.848.817"/>
+        </svg>
+
+    </div>
+
+    <table id="third-table">
+        <tr>
+            <td>88% of U.S. adults said high school did not leave them “fully-prepared” for how to handle money in the real world.</td>
+            <td>72% of U.S. adults said they would be “further ahead with their money today if they had a personal finance class in high school.”</td>
+        </tr>
+        <tr>
+            <td>58% of Americans don’t have an emergency fund.</td>
+            <td>America has $1.08 trillion in credit card debt.</td>
+        </tr>
+        <tr>
+            <td id="bottom-link" colspan="2">
+                <a href="https://moneylowdown.com/finance/the-financial-literacy-crisis-in-america-2023-report/" target="_blank">
+                    The Financial Literacy Crisis in America: 2023 Report.” Money Lowdown, 15 Dec. 2023. Accessed 24 Apr. 2025.
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <script type="module" src="stats.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+body{
+    overflow-x:hidden;
+    background-color:black;
+    margin:0;
+    color:gray;
+}
+@font-face {
+    font-family: 'Martina';
+    src: url('fonts/Martina.woff2') format('WOFF2');
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter.ttf') format('TrueType');
+}
+a{
+    color:#8db8db;
+}
+.menu{
+    position:fixed;
+    left:50px;
+    top:50px;
+    border:2px solid black;
+    transition:border 0.2s;
+    border-radius:10px;
+    box-sizing:border-box;
+    width:46px; height:46px;
+}
+.menu svg{
+    background-color: #2a2a2a;
+    padding:5px;
+    border-radius:10px;
+}
+.menu:hover{
+    border:2px solid gray;
+}
+.herotxt{
+    font-family:'Martina';
+    display:block;
+    margin:0px 300px;
+    font-size:6vw;
+    margin-left:200px;
+    font-weight:200;
+    background: linear-gradient(180deg, #94814C 0%, #CFB97D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(rgb(148, 129, 76) 0%, rgb(207, 185, 125) 100%) text;
+    -webkit-text-fill-color: transparent;
+}
+#title{
+    margin:300px 20vh 0px;
+    font-size:8vw;
+}
+.herotxt.simple{
+    color:white;
+    background: none; /* Remove gradient background */
+    -webkit-background-clip: unset; /* Remove background clip effect */
+    background-clip: unset; /* Remove background clip effect */
+    -webkit-text-fill-color: white; /* Set text color to white */
+    color: white; /* Set text color to white for non-webkit browsers */
+}
+h3{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:300;
+    font-size:2rem;
+    display:block;
+    margin-left:200px;
+    padding-right:200px;
+}
+#banner-video{
+    display:block;
+    width:100%;
+    position:absolute;
+    top:100vh;
+}
+#divider{
+    margin-top:calc(200vh - 40vh);
+}
+span{
+    text-decoration:underline;
+    text-decoration-color: #e2cb7f; /* Light gold color */
+    background: linear-gradient(180deg, #94814C 0%, #CFB97D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(rgb(148, 129, 76) 0%, rgb(207, 185, 125) 100%) text;
+    -webkit-text-fill-color: transparent;
+}
+.blackspan{
+    background: linear-gradient(180deg, #ffffff 0%, #CFB97D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(rgb(255, 242, 171) 0%, rgb(148, 129, 76) 100%) text;
+    -webkit-text-fill-color: transparent;
+}
+.parallaxHolder {
+    /* ensure enough scrollable space */
+    min-height: 150vh;
+    /* no special positioning needed here */
+  }
+  
+  /* pin the SVG to the top of the viewport once you hit it */
+  .parallaxHolder #screw {
+    position: sticky;
+    top: calc(50vh - (243px / 2));        
+    left:calc(50% - (252px / 2));
+    transform:scale(2);
+  }
+  .parallaxHolder svg#screw {
+    transform-origin: center center;
+    will-change: transform;
+  }
+  #gradientSection{
+    width:100%;
+    height:100vh;
+    padding-bottom:800px;
+    background: radial-gradient(circle at 50% 100%, 
+    rgba(148, 129, 76) 0%, 
+    rgba(207, 185, 125) 10%, 
+    rgba(255, 223, 0, 0) 70%);
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: flex-end;   
+  }
+  #star{
+width:400px;
+left:calc(50%);
+position: absolute;
+transform: translateX(-50%) translateY(0);
+will-change: transform, opacity;
+    top: 0;
+  }
+  .parallaxHolder1{
+    width:100%;
+    height:150vh;
+    position: relative;
+    overflow: hidden;
+
+  }
+  .herotxt.last{
+    display:block;
+    width:100%;
+    margin-top:60vh;
+    text-align:center;
+    margin-left:0px;
+  }
+#credits{
+    width:100%;
+    font-family:'Inter';
+    text-align:center;
+    margin-top:400px;
+    opacity:0;
+    transition:opacity 0.5s;
+}
+#credits.faded{
+    opacity:0.5;
+}
+#homebuttonatbottom{
+    position:absolute;
+    float:right;
+    right:50px;
+}
+/*-------------------------------------------*/
+#last-slides{
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+}
+.slide {
+    flex: 0 0 100%;
+    transition: transform 0.6s ease;
+    background-color:rgba(0,0,0,0.99);
+}
+.slide-wrapper {
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s ease;
+}
+.slide h1{
+    text-align:center;
+    font-family:'Martina';
+    color:white;
+    font-size:4vw;
+}
+.image-holder-h1920 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.image-holder-h1920 img {
+    max-height: 70vh;
+    width: auto;
+    object-fit: contain;
+}
+
+.slide div img{
+    display:block;
+    height:100%;
+    float:left;
+}
+#last-slides{
+    display:none;
+}
+#homebuttonatbottom-onslides{
+    z-index:4;
+    display:block;
+    position:absolute;
+    float:right;
+    width:100px;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:calc(100vh - 50px);
+    right:0;
+}

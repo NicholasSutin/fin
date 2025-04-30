@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employment</title>
+  <link rel="stylesheet" href="budget.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "d3": "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm",
+        "d3-sankey": "https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/+esm"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <a class="menu" href="home.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L10 16l10 10"/>
+    </svg>
+  </a>
+
+  <aside>
+    <h1>Your Annual Budget Visualization</h1>
+    <input type="text" id="annualIncome"       placeholder="$USD Annual Income"><br>
+    <input type="text" id="annualTaxes"        placeholder="$USD Annual Taxes"><br>
+    <input type="text" id="housingPayment"     placeholder="$USD Rent or Mortgage"><br>
+    <input type="text" id="utilities"          placeholder="$USD Utilities"><br>
+    <input type="text" id="propertyTax"        placeholder="$USD Property Tax"><br>
+    <input type="text" id="incomeTax"          placeholder="$USD Income Tax"><br>
+    <input type="text" id="insurance"          placeholder="$USD Insurance"><br>
+    <input type="text" id="emergencyFund"      placeholder="$USD Emergency Fund"><br>
+    <input type="text" id="retirementFund"     placeholder="$USD Retirement Fund"><br>
+    <input type="text" id="leisure"            placeholder="$USD Leisure"><br>
+    <input type="text" id="subscriptions"      placeholder="$USD Subscriptions (yearly)"><br>
+    <input type="text" id="investmentIncome"   placeholder="$USD Investment Income"><br>
+    <input type="text" id="investmentReturn"   placeholder="Annual Market Return %"><br>
+    <input type="text" id="sideHustleIncome"   placeholder="$USD Side Hustle Income"><br>
+    <div id="btnholder">
+      <button onclick="loadPreset()">Load Preset</button>
+      <button onclick="reset()" style="margin-left:50px;">Reset</button>
+    </div>
+  </aside>
+
+  <div id="chart"></div>
+
+  <script type="module">
+    import * as d3 from "d3";
+    import { sankey, sankeyLinkHorizontal } from "d3-sankey";
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const minSize = 20; // Minimum node height in pixels
+      const presets = {
+        annualIncome:    65000,
+        annualTaxes:     18000,
+        housingPayment:  15000,
+        utilities:       3000,
+        propertyTax:     2000,
+        incomeTax:       12000,
+        insurance:       2400,
+        emergencyFund:   5000,
+        retirementFund:  7000,
+        leisure:         2500,
+        subscriptions:   400,
+        investmentIncome:6000,
+        investmentReturn: 7.5,
+        sideHustleIncome:3000
+      };
+
+      // Function to format node names properly
+      function formatNodeName(name) {
+        // Handle specific cases
+        switch(name) {
+          case "annualIncome":
+            return "Annual Income";
+          case "annualTaxes":
+            return "Annual Taxes";
+          case "housingPayment":
+            return "Housing Payment";
+          case "propertyTax":
+            return "Property Tax";
+          case "incomeTax":
+            return "Income Tax";
+          case "emergencyFund":
+            return "Emergency Fund";
+          case "retirementFund":
+            return "Retirement Fund";
+          case "investmentIncome":
+            return "Investment Income";
+          case "sideHustleIncome":
+            return "Side Hustle Income";
+          case "Total Income":
+            return "Total Income";
+          case "Extra Money":
+            return "Extra Money";
+          default:
+            // Properly capitalize
+            return name.charAt(0).toUpperCase() + name.slice(1);
+        }
+      }
+
+      function handleInputUpdate() {
+        this.value = this.value.replace(/[^\d.]/g, '');
+        updateChart();
+      }
+
+      document.querySelectorAll("input[type='text']").forEach(inp =>
+        inp.addEventListener("input", handleInputUpdate)
+      );
+
+      window.loadPreset = () => {
+        Object.entries(presets).forEach(([id, val]) => {
+          document.getElementById(id).value = val;
+        });
+        updateChart();
+      };
+
+      window.reset = () => {
+        document.querySelectorAll("input[type='text']").forEach(inp => inp.value = '');
+        updateChart();
+      };
+
+      function updateChart() {
+  d3.select("#chart").selectAll("*").remove();
+
+  const pastelColors = d3.scaleOrdinal(d3.schemePastel1);
+  const linkOpacity = 0.1;
+
+  const srcKeys = ["annualIncome","investmentIncome","sideHustleIncome"];
+  const expKeys = ["annualTaxes","propertyTax","housingPayment","utilities",
+                   "incomeTax","insurance","subscriptions",
+                   "emergencyFund","retirementFund","leisure"];
+
+  const sources = srcKeys.map(k => {
+    const v = parseFloat(document.getElementById(k).value) || 0;
+    return v > 0 ? { id: k, value: v } : null;
+  }).filter(Boolean);
+
+  const expenses = expKeys.map(k => {
+    const v = parseFloat(document.getElementById(k).value) || 0;
+    return v > 0 ? { id: k, value: v } : null;
+  }).filter(Boolean);
+
+  const totalIn  = d3.sum(sources,  d => d.value);
+  const totalExp = d3.sum(expenses, d => d.value);
+  const extraVal = totalIn - totalExp;
+  const hasExtra = extraVal > 0;
+
+  if (!totalIn && !totalExp) return;
+
+  const nodes = [
+    ...sources.map(d => ({ name: d.id })),
+    { name: "Total Income" },
+    ...expenses.map(d => ({ name: d.id })),
+    ...(hasExtra ? [{ name: "Extra Money" }] : [])
+  ];
+
+  const links = [
+    ...sources.map(d => ({ source: d.id, target: "Total Income", value: d.value })),
+    ...expenses.map(d => ({ source: "Total Income", target: d.id, value: d.value })),
+    ...(hasExtra ? [{ source: "Total Income", target: "Extra Money", value: extraVal }] : [])
+  ];
+
+  const width = 1200, height = 800;
+  const svg = d3.select("#chart")
+    .append("svg")
+    .attr("width", width + 140)
+    .attr("height", height + 40)
+    .append("g")
+    .attr("transform", `translate(80,20)`);
+
+  const sank = sankey()
+    .nodeId(d => d.name)
+    .nodeWidth(20)
+    .nodePadding(10)
+    .extent([[1,1], [width-1, height-1]]);
+
+  const graph = sank({
+    nodes: nodes.map(d => ({ ...d })),
+    links: links.map(d => ({ ...d }))
+  });
+
+  graph.nodes.forEach(node => {
+    const nodeHeight = node.y1 - node.y0;
+    if (nodeHeight < 20) {
+      const center = (node.y0 + node.y1) / 2;
+      node.y0 = center - 10;
+      node.y1 = center + 10;
+    }
+  });
+
+  const defs = svg.append("defs");
+  graph.links.forEach((link, i) => {
+    const gradID = `grad${i}`;
+    const sourceColor = pastelColors(link.source.name);
+    const targetColor = pastelColors(link.target.name);
+
+    defs.append("linearGradient")
+      .attr("id", gradID)
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", link.source.x1)
+      .attr("x2", link.target.x0)
+      .attr("y1", (link.source.y0 + link.source.y1) / 2)
+      .attr("y2", (link.target.y0 + link.target.y1) / 2)
+      .call(g => {
+        g.append("stop").attr("offset", "0%").attr("stop-color", sourceColor);
+        g.append("stop").attr("offset", "100%").attr("stop-color", targetColor);
+      });
+
+    link.gradientID = gradID;
+  });
+
+  svg.append("g")
+    .selectAll("path")
+    .data(graph.links)
+    .enter().append("path")
+    .attr("d", sankeyLinkHorizontal())
+    .attr("fill", "none")
+    .attr("stroke", d => `url(#${d.gradientID})`)
+    .attr("stroke-width", d => Math.max(1, d.width))
+    .attr("opacity", linkOpacity);
+
+  const nodeG = svg.append("g")
+    .selectAll("g")
+    .data(graph.nodes)
+    .enter().append("g");
+
+  nodeG.append("rect")
+    .attr("x", d => d.x0)
+    .attr("y", d => d.y0)
+    .attr("width", d => d.x1 - d.x0)
+    .attr("height", d => d.y1 - d.y0)
+    .attr("fill", d => pastelColors(d.name));
+
+  nodeG.append("text")
+    .attr("x", d => d.x0 < width / 2 ? d.x1 + 6 : d.x0 - 6)
+    .attr("y", d => (d.y0 + d.y1) / 2)
+    .attr("dy", "-0.35em")
+    .attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
+    .each(function(d) {
+      const text = d3.select(this);
+      if (["propertyTax", "subscriptions", "insurance", "leisure"].includes(d.name)) {
+        text.append("tspan")
+          .attr("x", d.x0 < width / 2 ? d.x1 + 6 : d.x0 - 6)
+          .attr("dy", "0em")
+          .text(`${formatNodeName(d.name)}: $${d3.format(",.0f")(d.value)}`);
+      } else {
+        text.append("tspan")
+          .attr("x", d.x0 < width / 2 ? d.x1 + 6 : d.x0 - 6)
+          .attr("dy", "0em")
+          .text(formatNodeName(d.name));
+
+        text.append("tspan")
+          .attr("x", d.x0 < width / 2 ? d.x1 + 6 : d.x0 - 6)
+          .attr("dy", "1.2em")
+          .text(`$${d3.format(",.0f")(d.value)}`);
+      }
+    });
+}
+
+
+      updateChart();
+    });
+  </script>
+
+</body>
+</html>

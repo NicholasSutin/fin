@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investing</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "d3": "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm"
+        }
+      }
+      </script>
+    <link rel="stylesheet" href="docs.css">
+    
+</head>
+<body>
+
+    <a class="menu" href="home.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L10 16l10 10"/></svg>
+    </a>
+
+    <h1>Investing</h1>
+    <p>The first thing you should ask yourself before investing is if you're saving for retirement, if you're saving for something like college, or simply accumulating wealth without a specific framework in mind.</p>
+    <p>We'll be going over <a href="#retirement-accounts">Tax-Advantaged Retirement Accounts</a>, <a href="#taxable-brokerage-account">Taxable Brokerage</a>, <a href="#custodial-accounts">Custodial</a>, <a href="#education-investment-account">Education Savings Accounts</a>, and <a href="#trust-investment-account">Trust Accounts</a>.</p>
+    <p>For more in-depth information compiled in a notion page, <a href="investment-accounts.html">click here.</a></p>
+    
+    <div class="liveForm">
+        <div class="liveForm-left">
+            <div>
+                <p>Are you an Adult?</p>
+                <div>
+                    <button onclick="adultYes()">Yes</button><button onclick="adultNo()">No</button>
+                </div>
+            </div>
+            <div>
+                <p>Do you have a job?</p>
+                <div>
+                    <button onclick="jobYes()">Yes</button><button onclick="jobNo()">No</button>
+                </div>
+            </div>
+            <div>
+                <p>Are you saving for college?</p>
+                <div>
+                    <button onclick="collegeSavingYes()">Yes</button><button onclick="collegeSavingNo()">No</button>
+                </div>
+            </div>
+            <div>
+                <p>Are you saving for retirement?</p><div>
+                    <button onclick="retirementSavingYes()">Yes</button><button onclick="retirementSavingNo()">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="liveForm-right" id="accountDonut">
+            <!--svg-->
+        </div>
+    </div>
+    <script>
+        const buttons = document.querySelectorAll('.liveForm div div div button');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove 'selected' from all buttons in the same group
+                const siblings = button.parentElement.querySelectorAll('button');
+                siblings.forEach(sib => sib.classList.remove('selected'));
+                
+                // Add 'selected' to the clicked button
+                button.classList.add('selected');
+            });
+        });
+    </script>
+    <hr>
+    <p>Typically, Any account that's non-taxable has a contribution limit. </p>
+    <ul>
+        <li>Non-taxable (or tax-advantaged) accounts — like Roth IRAs, Traditional IRAs, 401(k)s, HSAs — usually have contribution limits set by the IRS.</li>
+        <li>Taxable accounts — like a regular brokerage account (or custodial) — do not have contribution limits. You can put in as much money as you want.</li>
+    </ul>
+    <h2 id="retirement-accounts">Tax-Advantaged Retirement Accounts</h2>
+    <p><b>401(k)</b></p>
+    <ul>
+        <li>Often provided by employers, and many offer matching contributions (free money!).</li>
+        <li>High contribution limits compared to IRAs.</li>
+        <li>Great for long-term retirement savings.</li>
+        <li>Contribution limit (2025): $23,000 for individuals under 50; $30,500 for those 50+ (catch-up).</li>
+    </ul>
+    
+    <p><b>Roth IRA</b></p>
+    <ul>
+        <li>Tax-free withdrawals in retirement (after age 59½ and if the account is at least 5 years old).</li>
+        <li>Contributions can be withdrawn anytime, tax- and penalty-free.</li>
+        <li>Great for people who expect to be in a higher tax bracket in retirement.</li>
+        <li>Contribution limit (2025): $6,500 for individuals under 50; $7,500 for those 50+ (catch-up).</li>
+        <li>Income limits: Phased out for higher earners (single filers: $146,000 to $161,000; married couples: $218,000 to $228,000).</li>
+    </ul>
+    
+    <p><b>Traditional IRA</b></p>
+    <ul>
+        <li>Contributions are tax-deductible, reducing taxable income in the year you contribute.</li>
+        <li>Great for people who need immediate tax savings.</li>
+        <li>Lower contribution limits than 401(k)s but still valuable for those looking to save outside of a workplace plan.</li>
+        <li>Contribution limit (2025): $6,500 for individuals under 50; $7,500 for those 50+ (catch-up).</li>
+        <li>Income limits: Deductions may be limited if you or your spouse are covered by a workplace plan.</li>
+    </ul>
+    
+    <p><b>HSA (Health Savings Account)</b></p>
+    <ul>
+        <li>It's like a supercharged retirement account for health expenses.</li>
+        <li>Contributions are tax-deductible, earnings grow tax-free, and withdrawals for qualified medical expenses are tax-free.</li>
+        <li>After age 65, you can use it for any purpose (though non-medical withdrawals are taxed).</li>
+        <li>Contribution limit (2025): $4,150 for individuals; $8,300 for families; $1,000 catch-up for those 55+.</li>
+        <li>Eligibility: Must have a high-deductible health plan (HDHP) to contribute.</li>
+    </ul>
+    <hr>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Account Type</th>
+            <th>Best Providers</th>
+            <th>How to Set One Up</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>401(k)</td>
+            <td>
+              - Through your employer (they usually pick a provider).<br>
+              - Common providers: <strong>Fidelity</strong>, <strong>Vanguard</strong>, <strong>Charles Schwab</strong>, <strong>Empower</strong>.
+            </td>
+            <td>
+              1. Sign up during your employer’s enrollment period.<br>
+              2. Choose contribution amount and investment options.<br>
+              3. Set up automatic payroll deductions.<br>
+              <em>(If self-employed, open a Solo 401(k) with Fidelity, Vanguard, or Schwab.)</em>
+            </td>
+          </tr>
+          <tr>
+            <td>Roth IRA</td>
+            <td>
+              - <strong>Fidelity</strong> (easy setup, $0 minimum).<br>
+              - <strong>Vanguard</strong> (great low-cost funds, $0 minimum).<br>
+              - <strong>Charles Schwab</strong> (user-friendly, good support).
+            </td>
+            <td>
+              1. Go to the provider’s website.<br>
+              2. Open a new Roth IRA account (takes ~10 minutes).<br>
+              3. Fund it with a bank transfer.<br>
+              4. Pick low-cost index funds, ETFs, or target-date funds.
+            </td>
+          </tr>
+          <tr>
+            <td>Traditional IRA</td>
+            <td>
+              - <strong>Fidelity</strong> (great if you want a variety of funds).<br>
+              - <strong>Vanguard</strong> (best for long-term investing, low fees).<br>
+              - <strong>Charles Schwab</strong> (good for beginners).
+            </td>
+            <td>
+              1. Same as Roth IRA setup.<br>
+              2. Select “Traditional IRA” instead of “Roth IRA.”<br>
+              3. Fund it and choose investments.
+            </td>
+          </tr>
+          <tr>
+            <td>HSA</td>
+            <td>
+              - <strong>Fidelity HSA</strong> (no fees, invest your HSA money easily).<br>
+              - <strong>Lively</strong> (great if you want an online-first experience).<br>
+              - <strong>HSA Bank</strong> (good investment options, but some fees).
+            </td>
+            <td>
+              1. If offered through work, enroll during benefits enrollment.<br>
+              2. If not, open an individual HSA at Fidelity, Lively, or HSA Bank.<br>
+              3. Fund it (can set up recurring transfers).<br>
+              4. Invest contributions once balance builds up (many require a $1,000 minimum before investing).
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr id="taxable-brokerage-account">
+      <h2>Taxable Brokerage</h2>
+      <p>A taxable Brokerage account is much more flexible, and can be opened with many firms. Unlike retirement accounts, there ar eno contribution limits, and no withdrawal restrictions. <br> However, you must pay <b>capital gains taxes</b> on profits and <b>income taxes</b> on dividents or interest earned. Its a great option for building wealth beyond retirement or saving for something like buying a house, starting a business, or early retirement.</p>
+      <p>If you're an active investor, consider looking in to margin accounts compared to cash accounts. To open a margin account within a taxable brokerage account, the minimum equity requirement is $2,000 in cash or marginable securities. This is mandated by FINRA and applies across all U.S. brokerages.</p>
+      <ul>
+        <li><strong>Initial Margin:</strong> Deposit at least 50% of the purchase price of securities. <em>– FINRA</em></li>
+        <li><strong>Maintenance Margin:</strong> Maintain at least 25% equity; brokers may require more. <em>– FINRA</em></li>
+        <li><strong>Pattern Day Trader:</strong> Maintain $25,000 equity if engaging in frequent day trading. <em>– U.S. Securities and Exchange Commission</em></li>
+      </ul>
+      <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Cash Account</th>
+            <th>Margin Account</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>How it works</td>
+            <td>You can only invest <strong>money you actually deposit</strong>.</td>
+            <td>You can <strong>borrow money</strong> from the broker to buy more investments than you have cash for.</td>
+          </tr>
+          <tr>
+            <td>Risk level</td>
+            <td>Lower risk — no debt.</td>
+            <td>Higher risk — you're taking on <strong>debt</strong> and could <strong>owe more</strong> than you invested.</td>
+          </tr>
+          <tr>
+            <td>Interest</td>
+            <td>No interest charges — you're only using your own money.</td>
+            <td>You pay <strong>interest</strong> on the borrowed amount.</td>
+          </tr>
+          <tr>
+            <td>Regulations</td>
+            <td>Simple and straightforward.</td>
+            <td>Regulated under special rules (like needing to maintain a minimum account balance, called a <strong>maintenance margin</strong>).</td>
+          </tr>
+          <tr>
+            <td>Best for</td>
+            <td>Beginners, long-term investors who just want to grow money steadily.</td>
+            <td>Experienced traders who want to leverage (amplify) their buying power — but riskier.</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <li><strong>Cash account</strong> = Pay fully up front.</li>
+        <li><strong>Margin account</strong> = Borrow to invest more, but it’s <strong>riskier</strong> and you’ll <strong>pay interest</strong>.</li>
+      </ul>
+      <p>Note that if using a cash account, there is something called CB (cost basis). If you bought a share at $60, and sold for a loss at $40, and then bought that same security within the short-term, your original transaction would no longer be considered a "loss", and instead, your newest purchase would have that additional $20 difference applied to it. So now if you buy that same stock at $35, it will cost you $55. But don't be mistaken, this doesn't actually cost you anything extra, and is simply used as an anti tax fraud measure.</p>
+      <p>With cash accounts, you need to wait for funds to be settled and ready to trade with. the time it takes for these funds to settle from the market back into your account typically takes <b>T + 2 days</b> (Trade Date + 2 business days) to officially settle.</p>
+      <p>If you use those "unsettled" proceeds to buy another stock and then sell that new stock before the original funds settle, you trigger a <b>Good Faith Violation.</b> Your first or second violation will warrant a warning from your brokerage. However, 3+ violations within 12 months puts your account at risk of being restricted to "settled cash only" for 90 days (meaning you can only buy with fully settled funds), no instant re-trading.</p>
+      <script src="sections/investing.js" type="module"></script>
+      <h2>Providers to use for brokerage accounts</h2>
+      <p>There's often a lot of fluff surrounding which broker to use for just a simple taxable brokerage account. There can be hidden fees such as account minimums, inactive account fees, trade commissions, options fees, Foreign Transaction fees (for international stocks or ETFs, or forex), and margin fees (on borrowed funds with interest rates), wire transfer fees, paper statement fees, short selling fees, and transfer fees.</p>
+      <p>To minimize these costs, look for no-fee brokers (like Fidelity, Charles Schwab, or Robinhood) that offer commission-free trading for your use case.</p>
+      <p>The most popular brokers include:</p>
+      <ul>
+        <li><b><a href="https://www.schwab.com/pricing">Schwab:</a></b> Very good ThinkOrSwim platform with in-depth market data (and education) without any fee, commission-free stocks and ETFs, $0 options + $0.65 per contract fee, $0 mutual funds, $0 Bonds, $2.25/futures contract. I personally recommend this for beginners up to advanced traders. Good mobile app. Cryptocurrency adoption towards mid-2026. Offers a variety of accounts, not just taxable brokerage. also has transitioned to <b>T+1</b> settlement cycle.</li>
+        <li><b><a href="https://robinhood.com/us/en/support/articles/trading-fees-on-robinhood/">Robinhood:</a></b> no commissions for stocks, ETFs, options, or crypto. They offer a $5/month "<a href="https://robinhood.com/us/en/gold/">gold</a>" plan, providing access to live market data, higher IRA match, and higher interest rate on uninvested cash. Robinhood recently launched an AI robo-advisor, which has a 0.25% annual management fee, though gold unlocks free management over $100k</li>
+        <li><b><a href="https://www.webull.com/trading-investing/options">Webull:</a></b> no stock, ETF, options commissions. Low options fees at $0.55/index contract, $75 fee for transferring out securities from your account. Margin interest varies around 9.74%. They have a paper trading section that doesn't require sign up, and a decent mobile app, as well as crypto trading.</li>
+        <li><b><a href="https://www.fidelity.com/why-fidelity/pricing-fees">Fidelity:</a></b> no stock, ETF, options commissions, $1/bond & CDs, has a robo-advisor service with no fees for accounts under $25k, and 0.35% fee for accounts above. No minimum to open an account, but $10 is required to start investing. High interest rate on uninvested cash, Highly rated mobile app. Offers strong mutual funds, educational, and research information.</li>
+        <li><b><a href="https://www.interactivebrokers.com/en/pricing/commissions-home.php">Interactive Brokers:</a></b> Well known for their international capabilities (though headquartered in Greenwich, CT), as well as in-depth algorithm tinkering, and AI plugins. no stock/ETF commissions for US residents. An <a href="">IBKR Pro Plan</a> enables professional-grade tools, global market access, price-efficient order execution, 90+ order types, lower costs, and advanced features for sophisticated investors and active traders. They also have paper trading without in-depth signup, and a price management algo that helps active traders do better in market orders.</li>
+    </ul>
+    <p>Some of the other most popular brokers include</p>
+    <ul>
+        <li><b><a href="https://us.etrade.com/what-we-offer/pricing-and-rates">E*Trade</a></b></li>
+        <li><b><a href="https://tastytrade.com/pricing/">TastyTrade</a></b></li>
+        <li><b><a href="https://www.nerdwallet.com/reviews/investing/brokers/public">Public</a></b></li>
+        <li><b><a href="https://www.moomoo.com/us/pricing">moomoo</a></b></li>
+        <li><b><a href="https://www.tradestation.com/pricing/">TradeStation</a></b></li>
+    </ul>
+    <p>The following banks also offer investment accounts for preexisting clients:</p>
+    <ul>
+        <li>Chase</li>
+        <li>Wells Fargo</li>
+        <li>Bank of America (Merril Lynch)</li>
+        <li>Citibank</li>
+        <li>SoFi</li>
+    </ul>
+    <h2 id="custodial-accounts">Custodial accounts</h2>
+    <p>There are a couple of main types of custodial accounts, typically used for managing assets for minors until they reach adulthood. Here are the most common types:</p>
+
+<ul>
+  <li>
+    <strong>UGMA (Uniform Gifts to Minors Act) Accounts</strong>
+    <ul>
+      <li><strong>Purpose:</strong> To hold and manage assets for a minor until they reach the age of majority (usually 18 or 21, depending on state law).</li>
+      <li><strong>Types of Assets:</strong> Typically includes <strong>cash</strong>, <strong>stocks</strong>, <strong>bonds</strong>, and <strong>mutual funds</strong>.</li>
+      <li><strong>Control:</strong> The custodian manages the assets until the minor comes of age, at which point the minor takes full control.</li>
+      <li><strong>Taxation:</strong> The income generated from the investments is taxed at the minor's tax rate, which could be beneficial if the child is in a lower tax bracket.</li>
+    </ul>
+  </li>
+  
+  <li>
+    <strong>UTMA (Uniform Transfers to Minors Act) Accounts</strong>
+    <ul>
+      <li><strong>Purpose:</strong> Similar to the UGMA, but it allows for a broader range of assets, including <strong>real estate</strong>, <strong>artwork</strong>, and other types of property.</li>
+      <li><strong>Types of Assets:</strong> Cash, stocks, bonds, mutual funds, and real estate (depending on state law).</li>
+      <li><strong>Control:</strong> Like the UGMA, the custodian manages the assets until the minor reaches the age of majority, after which control is transferred to the minor.</li>
+      <li><strong>Taxation:</strong> Like UGMA, the minor is taxed on any income generated by the assets.</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Custodial Brokerage Accounts</strong>
+    <ul>
+      <li><strong>Purpose:</strong> To invest in the stock market, mutual funds, ETFs, and other securities on behalf of a minor.</li>
+      <li><strong>Types of Assets:</strong> Stocks, bonds, mutual funds, ETFs, etc.</li>
+      <li><strong>Control:</strong> The custodian manages the account until the minor reaches the age of majority.</li>
+      <li><strong>Taxation:</strong> Investment income is subject to taxes, and for higher-income minors, the "kiddie tax" could apply, meaning some of the income might be taxed at the parents' tax rate.</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Custodial Roth IRA</strong>
+    <ul>
+      <li><strong>Purpose:</strong> To allow a minor to contribute to a Roth IRA, potentially building a tax-free retirement fund early on.</li>
+      <li><strong>Types of Assets:</strong> Stocks, bonds, mutual funds, ETFs, etc.</li>
+      <li><strong>Control:</strong> The custodian manages the account, but the minor must have <strong>earned income</strong> to contribute to the Roth IRA (e.g., from a job or self-employment).</li>
+      <li><strong>Taxation:</strong> Contributions are made with after-tax money, and qualified withdrawals in retirement are tax-free.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Key Differences:</strong></p>
+<ul>
+  <li><strong>UGMA vs. UTMA:</strong> The main difference is that UTMA accounts allow a broader range of assets, including real estate, while UGMA is limited to financial assets like stocks and bonds.</li>
+  <li><strong>Custodial Roth IRA:</strong> This allows for tax-advantaged retirement savings and is beneficial if the minor has earned income.</li>
+</ul>
+
+<p><strong>When to Use a Custodial Account:</strong></p>
+<ul>
+  <li><strong>Savings for Education:</strong> Some parents use custodial accounts to save for a child’s education, though 529 plans are often preferred for educational savings due to their tax advantages.</li>
+  <li><strong>Investing for the Future:</strong> These accounts can be used to teach children about investing and to give them a head start on building wealth.</li>
+</ul>
+<p>Fidelity youth is another account for minors that exists, but isn't one of the officially named "custodial" accounts. The teen is the sole owner and decision-maker of the account, not a joint or custodial account. Most US stocks, ETFs, and mutual funds are tradable, and debit cards can be requested. Educational tools are also provided.</p>
+    
+<h2 id="education-investment-account">Education Savings Accounts:</h2>
+<p>Coverdell Education Savings Account (ESA)</p>
+<ul>
+  <li><strong>Purpose:</strong> Save for K-12 and higher education expenses.</li>
+  <li><strong>Tax Benefits:</strong> Contributions grow tax-deferred, and withdrawals for qualified education expenses are tax-free.</li>
+  <li><strong>Contribution Limits:</strong> $2,000 per year.</li>
+  <li><strong>Eligibility:</strong> Income limits apply; account must be opened before the beneficiary turns 18.</li>
+  <li><strong>Qualified Expenses:</strong> Tuition, books, supplies, tutoring, and special needs for K-12; tuition, books, and fees for college.</li>
+  <li><strong>Control:</strong> The account holder manages the account until the beneficiary turns 30.</li>
+</ul>
+
+<p>529 College Savings Plan</p>
+<ul>
+  <li><strong>Purpose:</strong> Save for higher education expenses.</li>
+  <li><strong>Tax Benefits:</strong> Contributions grow tax-deferred, and withdrawals for qualified education expenses are tax-free.</li>
+  <li><strong>Contribution Limits:</strong> Up to $300,000 or more per beneficiary.</li>
+  <li><strong>Eligibility:</strong> No income limits; available for anyone.</li>
+  <li><strong>Qualified Expenses:</strong> Tuition, fees, room and board, and books for college. Also covers up to $10,000 for K-12 tuition.</li>
+  <li><strong>Control:</strong> The account owner retains control of the account and can change the beneficiary.</li>
+</ul>
+<br>
+<h2 id="trust-investment-account">Trusts:</h2>
+<p>When are Trust Accounts Used?</p>
+<ul>
+  <li><strong>Estate Planning:</strong> To transfer assets after death, avoiding probate.</li>
+  <li><strong>Minimizing Taxes:</strong> To reduce estate taxes by shifting assets into a trust.</li>
+  <li><strong>Asset Protection:</strong> To protect assets from creditors, lawsuits, or divorce.</li>
+  <li><strong>For Minor or Special Needs Beneficiaries:</strong> To manage assets for children or those with special needs.</li>
+  <li><strong>Charitable Giving:</strong> To donate assets to charity while getting tax benefits.</li>
+  <li><strong>Control Over Distribution:</strong> To control how and when beneficiaries receive assets.</li>
+  <li><strong>Avoiding Probate:</strong> To pass assets without going through the lengthy probate process.</li>
+</ul>
+
+<p>Types of Trust Accounts</p>
+<ul>
+  <li><strong>Revocable Trusts:</strong> Can be changed or revoked anytime.</li>
+  <li><strong>Irrevocable Trusts:</strong> Cannot be changed after creation.</li>
+  <li><strong>Living Trusts:</strong> Set up during the creator's lifetime.</li>
+  <li><strong>Testamentary Trusts:</strong> Created by a will, active after death.</li>
+  <li><strong>Special Needs Trusts:</strong> For beneficiaries with disabilities.</li>
+  <li><strong>Charitable Trusts:</strong> Set up to donate to a charity.</li>
+</ul>
+    <a href="investing-evaluation.html" class="next-section">Up next: How to evaluate a stock</a>
+</body>
+</html>

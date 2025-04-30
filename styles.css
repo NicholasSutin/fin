@@ -1,0 +1,129 @@
+body{
+    background-color:#141f24;
+    margin:0;
+    padding:0;
+    color:#f1f7fb;
+    width:1920px !important;
+}
+:root {
+    --bg:#141f24;
+    --ct:#38464f;
+    --tx:#f1f7fb;
+}
+@font-face {
+    font-family: 'Martina';
+    src: url('fonts/Martina.woff2') format('WOFF2');
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter.ttf') format('TrueType');
+}
+
+#intro{
+    text-align:center;
+    position:absolute;
+    width:100%;
+    height:170px;
+    top:calc(50% - 85px);   
+    transition: opacity 0.5s ease !important;
+}
+#intro.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+#intro p{
+    font-family:'Inter' !important;
+    font-size:1rem !important;
+    opacity:0.8;
+    margin-top:-20px !important;
+}
+#screenWidthLog{
+    transform:translateY(25px);
+}
+#intro::after{
+    content:'';
+    display:block;
+    width:0px;
+    height:0px;
+    margin-left:50%;
+    box-shadow: 0 0 200px 100px rgba(255, 255, 255, 0.5);
+    transition:box-shadow 0.2s ease;
+}
+#intro.transition-out::after {
+    box-shadow: 0 0 0px 0px rgba(255, 255, 255, 0.5);
+}
+/*-*/
+#slides{
+    font-family:'Martina';
+}
+#s1{
+    pointer-events: none;
+    display:none;
+    opacity:0;
+    width:80%;
+    margin:100px auto;
+    transition:opacity 0.2s;
+}
+#s1.visible {
+    opacity: 1;
+    pointer-events: auto; 
+  }
+#slides h1{
+    font-size:2vw;
+    font-weight:600;
+}
+#slides p{
+    font-size:2vw;
+    font-family:'Martina';
+    font-weight: 600;
+    margin:0;
+}
+#slides a{
+    opacity:0.5;
+    color:var(--tx);
+    text-decoration: none;
+    transition:opacity 0.2s;
+    font-family:'Inter';
+}
+#s1 a {
+    opacity: 0;
+    transition: opacity 1s ease; 
+    margin-top:4px;
+}
+#s1 a.visible {
+    opacity: 0.5;
+}
+
+#slides a:hover{
+    opacity:0.7;
+}
+#slides a svg{
+    transform:translateY(2px);
+}
+/*-*/
+#map{
+    z-index:-4 !important;
+}
+#map, #second-scene{
+    position:absolute;
+    top:0;
+    z-index:-3;
+}
+#second-scene{
+    opacity:0.2;
+    z-index:-2 !important;
+}
+#second-scene.fade-in {
+    opacity: 1 !important;
+    transition: opacity 0.5s ease;
+}
+#s2{
+    position:absolute;
+    width:30%;
+    top:300px;
+    left:10%;
+    display:none;
+}
+#s2 p{
+    font-size:3rem;
+}

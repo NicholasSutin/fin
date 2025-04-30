@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fin | Dashboard</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+  <!-- Full-screen container -->
+
+    <div id="bentogrid-background">
+        <div class="bentogrid first-row">
+            <div class="span-2">
+                <canvas id="firstTile"></canvas>
+            </div>
+            <div>
+                <canvas id="secondTile"></canvas>
+            </div>
+            <div>
+                <canvas id="thirdTile"></canvas>
+            </div>
+        </div>
+        <div class="bentogrid second-row">
+            <div>
+                <div id="fourthTile">
+
+                </div>
+            </div>
+            <div class="span-2">
+
+            </div>
+            <div>
+                <div id="sixthTile">
+
+                </div>
+            </div>
+        </div>
+        <div class="bentogrid third-row">
+            <div>
+                <canvas id="seventhTile"></canvas>
+            </div>
+            <div>
+                <canvas id="eighthTile"></canvas>
+            </div>
+            <div class="span-2">
+                <canvas id="ninthTile"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="webglbackgrounds.js"></script>
+
+
+    <div class="bentogrid first-row">
+        <div class="span-2">
+            <button id="investing-btn" onclick="investingBtn()">
+                Investing
+            </button>
+        </div>
+        <div>
+            <button id="fafsa-btn" onclick="fafsaBtn()">
+                FAFSA
+            </button>
+        </div>
+        <div>
+            <button id="college-btn" onclick="collegeBtn()">
+                College
+            </button>
+        </div>
+    </div>
+    <div class="bentogrid second-row">
+        <div>
+            <button id="employment-btn" onclick="investmentResearchBtn()">
+                Investment Research
+            </button>
+        </div>
+        <div class="span-2">
+            <div id="banner">
+                <h1>Fin</h1>
+                <p>Created by Nicholas Sutin</p>
+            </div>
+        </div>
+        <div>
+            <button id="banking-btn" onclick="bankingBtn()">
+                Banking
+            </button>
+        </div>
+    </div>
+    <div class="bentogrid third-row">
+        <div>
+            <button id="taxes-btn" onclick="taxesBtn()">
+                Taxes
+            </button>
+        </div>
+        <div>
+            <button id="budget-btn" onclick="budgetBtn()">
+                Budget
+            </button>
+        </div>
+        <div class="span-2">
+            <button id="psa-btn" onclick="psaBtn()">
+                Call to action PSA
+            </button>
+        </div>
+    </div>
+
+    <script src="sections.js"></script>
+    <script src="animationbackgrounds.js"></script>
+   
+</body>
+</html>
